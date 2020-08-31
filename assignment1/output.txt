@@ -1,0 +1,15 @@
+> g++ .\RSA.cpp
+> .\a.exe
+
+p = 17
+q = 11
+N = (p*q) = 187
+phi = (p-1)*(q-1) = 160
+VALUES of e AND d such that e*d equals 1 mod (phi)
+e = 7
+d = 23
+Public key -> {e, n} is {7, 187}
+Private key -> {d, n} is {23, 187}
+Enter the data to encrypt :: 89
+Cipher text is 166
+Decrypted text is 89 !!
