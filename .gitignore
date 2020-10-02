@@ -1,2 +1,5 @@
 *.exe
-*.out
+*.class
+.classpath
+.project
+.metadata/

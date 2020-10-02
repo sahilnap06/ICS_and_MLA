@@ -1,0 +1,8 @@
+Output of Assignment 3:
+
+//Enter the string to be hashed : Sahil Naphade
+//3062657bb8605c5bf791641664b38721f27cac21
+
+
+//Enter the string to be hashed : SahilNaphade
+//The hashed message is : 291ddbaa87769ee3077d89f88d7f32e7b422c851
