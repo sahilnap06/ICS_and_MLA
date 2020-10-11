@@ -1,5 +1,9 @@
+*.xlsx
+*.csv
 *.exe
 *.class
 .classpath
 .project
 .metadata/
+.RData
+.RHistory
