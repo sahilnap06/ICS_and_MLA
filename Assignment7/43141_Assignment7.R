@@ -7,7 +7,7 @@ library('lubridate')
 library('plyr')
 library('dplyr')
 library('datasets')
-
+setwd("E:/College/CL7/Assignment7")
 # Read the data-set
 pd <- read.transactions("./groceries.csv",sep=',', header = F)
 inspect(pd[1:10,])
@@ -49,3 +49,4 @@ inspect(rules1)
 plot(rules1, method = "paracoord")
 plot(rules1, method = "matrix", control = list(reorder = "none"))
 plot(rules1, jitter = 0)
+

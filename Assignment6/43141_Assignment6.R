@@ -3,68 +3,69 @@ library("DAAG")
 library("lattice")
 library("leaps")
 library("ISLR")
-#df<-df("advertising.csv")
-df <- read.csv("./advertising.csv")
+setwd("E:/College/CL7/Assignment6")
+#dataset<-dataset("advertising.csv")
+dataset <- read.csv("./advertising.csv")
 
-head(df)
-dim(df) # Dimensions of the dataset
+head(dataset)
+dim(dataset) # Dimensions of the dataset
 
 #Divide the dataset into training and testing
-train_dataset=df[1:120,]
+train_dataset=dataset[1:120,]
 head(train_dataset)
 
-test_dataset=df[121:200,]
+test_dataset=dataset[121:200,]
 head(test_dataset)
 
 # Columns for binding for predictioin
 S=cbind("TV","Newspaper","Radio")
 
 # Linear regression using Least Square method on TV
-TV1=lm(Sales~TV,data=train_dataset)
-TV1
+TV_Train=lm(Sales~TV,data=train_dataset)
+TV_Train
   # Display the attributes of Linear regression of TV
-attributes(TV1)
-TV1$coefficients[1]
-TV1$coefficients[2]
+attributes(TV_Train)
+TV_Train$coefficients[1]
+TV_Train$coefficients[2]
 
 # Linear regression using Least Square method on Radio
-Radio1=lm(Sales~Radio,data=train_dataset)
-Radio1
+Radio_train=lm(Sales~Radio,data=train_dataset)
+Radio_train
   # Display the attributes of Linear regression of Radio
-attributes(Radio1)
-Radio1$coefficients[1]
-Radio1$coefficients[2]
+attributes(Radio_train)
+Radio_train$coefficients[1]
+Radio_train$coefficients[2]
 
 # Linear regression using Least Square method on Newspapers
-Newspaper1=lm(Sales~Newspaper,data=train_dataset)
-Newspaper1
+Np_train=lm(Sales~Newspaper,data=train_dataset)
+Np_train
   # Display the attributes of Linear regression of Radio
-attributes(Newspaper1)
-Newspaper1$coefficients[1]
-Newspaper1$coefficients[2]
+attributes(Np_train)
+Np_train$coefficients[1]
+Np_train$coefficients[2]
 
 # Plotting graphs of parts of dataset vs sales
 plot(train_dataset$Sales~train_dataset$TV,xlab="TV",ylab = "Sales")
-abline(TV1, col="red")
+abline(TV1, col="blue")
 
 plot(train_dataset$Sales~train_dataset$Radio,xlab="Radio",ylab = "Sales")
-abline(Radio1, col="blue")
+abline(Radio_train, col="red")
 
 plot(train_dataset$Sales~train_dataset$Newspaper,xlab="Newspaper",ylab="Sales")
-abline(Newspaper1, col="green")
+abline(Np_train, col="yellow")
 
 summary(TV1)
 
 tidy(TV1)
 
 Tvp=predict(TV1,train_dataset)
-Radiop=predict(Radio1,train_dataset)
-Newspaperp=predict(Newspaper1,train_dataset)
+Radiop=predict(Radio_train,train_dataset)
+Newspaperp=predict(Np_train,train_dataset)
 
 # Predict on the test data-set
 Tvt=predict(TV1,test_dataset)
-Radiot=predict(Radio1,test_dataset)
-Newspapert=predict(Newspaper1,test_dataset)
+Radiot=predict(Radio_train,test_dataset)
+Newspapert=predict(Np_train,test_dataset)
 
 #  Finding mean square error on Training dataset
 TVtrain_mse=mse(train_dataset$Sales,Tvp)
