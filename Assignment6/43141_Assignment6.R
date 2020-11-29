@@ -1,7 +1,9 @@
 library("Metrics")
 library("DAAG")
 library("lattice")
+library("dplyr")
 library("leaps")
+library("tidyverse")
 library("ISLR")
 setwd("E:/College/CL7/Assignment6")
 #dataset<-dataset("advertising.csv")
@@ -102,6 +104,7 @@ model1=cv.lm(dt,(Sales~TV),m=5)
 # Using Subset selection method
 regfit_full = regsubsets(Sales~., data= test_dataset)
 reg_summary = summary(regfit_full)
+# Display value of R-squared
 reg_summary$rsq
 
 # Set up a 2x2 grid so we can look at 4 plots at once
@@ -124,3 +127,4 @@ points(cp_min, reg_summary$cp[cp_min], col = "red", cex = 2, pch = 20)
 plot(reg_summary$bic, xlab = "Number of Variables", ylab = "BIC", type = "l")
 bic_min = which.min(reg_summary$bic) # 6
 points(bic_min, reg_summary$bic[bic_min], col = "red", cex = 2, pch = 20)
+
