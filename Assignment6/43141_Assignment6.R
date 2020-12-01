@@ -1,6 +1,6 @@
 library("Metrics")
-library("DAAG")
 library("lattice")
+library("DAAG")
 library("dplyr")
 library("leaps")
 library("tidyverse")
@@ -48,7 +48,7 @@ Np_train$coefficients[2]
 
 # Plotting graphs of parts of dataset vs sales
 plot(train_dataset$Sales~train_dataset$TV,xlab="TV",ylab = "Sales")
-abline(TV1, col="blue")
+abline(TV_Train, col="blue")
 
 plot(train_dataset$Sales~train_dataset$Radio,xlab="Radio",ylab = "Sales")
 abline(Radio_train, col="red")
