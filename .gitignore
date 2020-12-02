@@ -1,0 +1,15 @@
+*.arff
+*.zip
+*.csv
+.RData
+*.jar
+*.class
+.Rhistory
+*.xlsx
+*.pptx
+*.exe
+.metadata
+.classpath
+.project
+.settings/
+*.pdf
