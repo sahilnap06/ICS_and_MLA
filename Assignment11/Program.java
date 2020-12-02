@@ -33,7 +33,7 @@ public class Program {
 		Evaluation eval = new Evaluation(testing);
 		eval.evaluateModel(nb, testing);
 		System.out.println(eval.toSummaryString("\nResults testing\n", true));
-		
+
 		for(int i = 0; i < training.numClasses(); i++) {
 			System.out.println("Class "+ i);
 			System.out.println(eval.precision(i) + " " + eval.recall(i) + " " + eval.areaUnderROC(i));
