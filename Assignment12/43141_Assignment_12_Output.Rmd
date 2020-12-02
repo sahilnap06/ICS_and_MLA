@@ -1,0 +1,64 @@
+---
+title: "Principal Component Analysis in R"
+author: "43141 (Sahil Naphade)"
+date: "02/12/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Reading the Wine dataset and checking
+```{r}
+setwd("E:/College/CL7/Assignment12")
+winedf <- read.csv("../Datasets/wine.csv")
+
+head(winedf)
+
+```
+
+# Calculate Correlation of all attributes
+```{r}
+cor_mat <- cor(winedf[, -1])
+cor_mat
+
+``` 
+### We see that alcohol and Proline, alcohol and Color.int has fairly high correlation.
+### Similarly, Phenols with Proanth, and Flavanoids with Proanth has high correlation.
+### Flavanoids and nonflavanoids phenols has high negative correlation.
+
+# Checking the principal components of the dataset.
+```{r}
+WPCA <- princomp(winedf[, -1], cor = T, scores = T, covmat = NULL)
+summary(WPCA)
+```
+## Plot the WPCA graph
+```{r}
+plot(WPCA)
+```
+
+## (component coefficients) correlation coefficients between variables(rows) and factors(columns)
+```{r}
+loadings(WPCA)
+```
+
+### Checking the attributes of the Principal Component Analysis
+```{r}
+attributes(WPCA)
+```
+
+### Plotting various graphs and scree graph to check the variation of information in the variables/components.
+```{r}
+plot(WPCA, t='l')
+```
+```{r}
+screeplot(WPCA, type="line", main="Scree plot")
+```
+```{r}
+biplot(WPCA)
+```
+## Check the score of PCA
+```{r}
+WPCA$scores[1:10, 1]
+```
+

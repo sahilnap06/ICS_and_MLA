@@ -1,0 +1,105 @@
+---
+title: "Assignment7Output"
+author: "43141 (Sahil Naphade)"
+date: "17/10/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Importing the libraries
+```{r}
+library("arules")
+library('arulesViz')
+library('tidyverse')
+library('knitr')
+library('lubridate')
+library('plyr')
+library('dplyr')
+library('datasets')
+```
+
+# Read the dataset and inpect
+```{r}
+pd <- read.transactions("./groceries.csv",sep=',', header = F)
+inspect(pd[1:10,])
+```
+# Summary of Dataset
+```{r}
+summary(pd)
+```
+
+# Plotting various graphs for the dataset
+## 1. Relative frequency graph
+```{r}
+itemFrequencyPlot(pd, support = .001, topN = 50, col="lightgreen", xlab = "Item name", 
+                  ylab = " Frequency (relative)", main = "Top 50 items with 0.001 support (relative)")
+```
+### This graph shows the top 50 products which have appeared in at least 0.1% of total records
+#### We can see that "Whole milk" is most sold product, followed by "other vegetables", "Buns", "Soda" and "Yogurt"
+
+## 2. Absolute frequency graph
+```{r}
+itemFrequencyPlot(pd, topN = 15, col="lightblue", xlab = "Item name", type = "absolute", 
+                  ylab = " Frequency (Absolute)", main = "Top 15 items (absolute frequency)")
+```
+
+# Defining Apriori rules for support = 0.001 and Confidence = 0.8 with minimum length = 2
+```{r}
+pd_rules = apriori(pd, parameter = list(support = 0.001, confidence = 0.8, minlen = 2))
+summary(pd_rules, limit = 3)
+```
+## Checking the rules as per "lift"
+```{r}
+inspect(sort(pd_rules, by="lift"))
+```
+## Plotting various graphs for the rules
+```{r}
+plot(pd_rules)
+```
+```{r}
+plot(pd_rules,method="grouped", jitter = 0)
+```
+```{r}
+plot(pd_rules,method="graph")
+```
+```{r}
+plot(pd_rules, method="graph", control=list(layout=igraph::in_circle()))
+```
+# Sorting the rules by confidence value
+```{r}
+rules = sort(pd_rules, by = "confidence")
+options(digits = 2)
+inspect(rules)
+```
+
+# removing redundant rules
+```{r}
+inspect(rules[is.redundant(rules)])
+rules = rules[!is.redundant(rules)]
+inspect(rules[1:5])
+```
+# Rules for "Whole milk" (Most bought product)
+```{r}
+rules1 = apriori(pd, parameter = list(support = 0.001, confidence = 0.8, minlen = 2),
+                appearance = list(default = "lhs", rhs = "whole milk"))
+options(digits = 2)
+inspect(rules1)
+```
+# Plotting graphs for the new rules
+```{r}
+# Only for interactive sessions
+# plot(rules1, method = "graph", engine = "interactive")
+```
+```{r}
+plot(rules1, method = "paracoord")
+```
+```{r}
+plot(rules1, method = "matrix", control = list(reorder = "none"))
+```
+```{r}
+plot(rules1, jitter = 0)
+```
+

@@ -1,2 +1,12 @@
 *.exe
+*.class
 *.out
+*.arff
+*.RData
+*.Rhistory
+*.pptx
+*.csv
+*.xlsx
+.classpath
+.project
+.metadata/

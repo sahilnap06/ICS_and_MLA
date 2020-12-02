@@ -1,0 +1,31 @@
+head(pd, n = 10)
+colnames(pd) <- c("list")
+head(pd, 1)
+
+is.na(pd)
+
+# write.csv2(pd, "./market_basket_modified.csv", quote = F, row.names = F)
+
+# groceries <- read.transactions("./Market_Basket_Optimisation.csv")
+itemFrequencyPlot(pd.all, type = "absolute")
+
+rules = apriori(groceries, parameter = list(supp = 0.001, conf = 0.8))
+summary(rules)
+
+rules = sort(rules, by = "confidence")
+options(digits = 2)
+inspect(rules)
+
+inspect(rules[is.redundant(rules)])
+rules = rules[!is.redundant(rules)]
+inspect(rules[1 : 5])
+
+
+rules = apriori(groceries, parameter = list(supp = 0.001, conf = 0.8, maxlen = 4),
+                appearance = list(default = "lhs", rhs = "yogurt"))
+
+
+plot(rules, method = "graph", engine = "interactive")
+plot(rules, method = "paracoord")
+plot(rules, method = "matrix", control = list(reorder = "none"))
+arulesViz :: plotly_arules(rules)

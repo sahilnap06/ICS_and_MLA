@@ -1,0 +1,38 @@
+/**
+ * Output:
+ * PS G:\College\CL7\assignment2> g++ .\CRT_1.cpp 
+ * PS G:\College\CL7\assignment2> .\a.exe
+ * Enter the number of equations : 3 
+ * Enter equation no. 1 :
+ * For x = a (mod b), input a and b
+ * Enter a : 2
+ * Enter b : 3
+ * 
+ * Enter equation no. 2 :
+ * For x = a (mod b), input a and b
+ * Enter a : 3
+ * Enter b : 4
+ * 
+ * Enter equation no. 3 :
+ * For x = a (mod b), input a and b
+ * Enter a : 1
+ * Enter b : 5
+ * 
+ * The Equations you input are :
+ * x = 2 (mod 3)
+ * x = 3 (mod 4)
+ * x = 1 (mod 5)
+ * 
+ * M = 60
+ * 
+ * M1 = M / m1 = 20
+ * M2 = M / m2 = 15
+ * M3 = M / m3 = 12
+ * 
+ * y1 = 2
+ * y2 = 3
+ * y3 = 3
+ * 
+ * x = 11
+ * 
+ **/
